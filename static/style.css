@@ -1,0 +1,259 @@
+:root {
+    --bg-primary: #0a0f1c;
+    --bg-secondary: #141b2d;
+    --text-primary: #ffffff;
+    --text-secondary: #a0aec0;
+    --accent: #3699ff;
+    --accent-glow: rgba(54, 153, 255, 0.2);
+    --card-bg: #1a223f;
+    --border-radius: 12px;
+    --gold: linear-gradient(45deg, #FFD700, #FFA500);
+    --gold-glow: rgba(255, 215, 0, 0.3);
+}
+
+/* Enhanced branding styles */
+.branding {
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    font-family: 'Cinzel', serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    background: var(--gold);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 15px var(--gold-glow);
+    z-index: 1000;
+    letter-spacing: 2px;
+}
+
+/* Enhanced heading glow */
+.glow-text {
+    color: var(--text-primary);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3),
+                 0 0 20px rgba(255, 255, 255, 0.1);
+    animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes textGlow {
+    from {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.3),
+                     0 0 20px rgba(255, 255, 255, 0.1);
+    }
+    to {
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.4),
+                     0 0 25px rgba(255, 255, 255, 0.2);
+    }
+}
+
+/* Enhanced button glow */
+.glow-button {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.glow-button:hover {
+    box-shadow: 0 0 20px var(--accent-glow),
+                0 0 40px var(--accent-glow);
+    transform: translateY(-2px);
+}
+
+.glow-button:before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(54, 153, 255, 0.1) 0%, transparent 70%);
+    transform: rotate(45deg);
+    animation: buttonGlow 3s linear infinite;
+}
+
+@keyframes buttonGlow {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(120deg, var(--text-primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    class: glow-text;
+
+}
+
+.glow-line {
+    height: 2px;
+    background: var(--accent);
+    margin: 1rem auto;
+    width: 150px;
+    box-shadow: 0 0 15px var(--accent-glow);
+    border-radius: 2px;
+}
+
+.glow-line-small {
+    height: 1px;
+    background: var(--accent);
+    margin: 0.5rem auto;
+    width: 100px;
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.form-container {
+    background: var(--bg-secondary);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    margin-bottom: 2rem;
+}
+
+.input-group textarea {
+    width: 100%;
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    resize: vertical;
+    transition: all 0.3s ease;
+}
+
+.input-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+
+.results-container {
+    background: var(--bg-secondary);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    margin-top: 2rem;
+}
+
+.predictions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.prediction-card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.model-name {
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+
+.prediction-details {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.highlight {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.best-model, .final-prediction {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.highlight-box, .prediction-box {
+    background: var(--card-bg);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-top: 1rem;
+    font-weight: 600;
+}
+
+.prediction-box.glow {
+    border: 1px solid var(--accent);
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+.chart-section {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.chart-container {
+    background: var(--card-bg);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-top: 1rem;
+}
+
+.chart-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        margin: 1rem auto;
+    }
+
+    .header h1 {
+        font-size: 1.8rem;
+    }
+
+    .form-container, .results-container {
+        padding: 1rem;
+    }
+
+    .predictions-grid {
+        grid-template-columns: 1fr;
+    }
+}

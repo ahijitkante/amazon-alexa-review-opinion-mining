@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opinion Mining</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cinzel:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="branding">AK</div>
+    <div class="container">
+        <div class="header">
+            <h1 class="glow-text">Amazon Alexa Review Sentiment Analysis</h1>
+            <div class="glow-line"></div>
+        </div>
+
+        <div class="form-container">
+            <form method="POST">
+                <div class="input-group">
+                    <textarea 
+                        name="review" 
+                        rows="5" 
+                        placeholder="Enter your review"
+                        required></textarea>
+                </div>
+                <button type="submit" class="glow-button">Analyze</button>
+            </form>
+        </div>
+
+        {% if review_text %}
+        <div class="results-container">
+            <div class="section-header">
+                <h2>🔹 PREDICTIONS FROM MODELS 🔹</h2>
+                <div class="glow-line-small"></div>
+            </div>
+
+            <div class="predictions-grid">
+                {% for model, sentiment in predictions.items() %}
+                <div class="prediction-card">
+                    <div class="model-name">📌 {{ model }}</div>
+                    <div class="prediction-details">
+                        Prediction: <span class="highlight">{{ sentiment }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="best-model">
+                <h3>🔥 MODEL WITH HIGHEST ACCURACY</h3>
+                <div class="highlight-box">
+                    Decision Tree ({{ decision_tree_accuracy }}%)
+                </div>
+            </div>
+
+            <div class="final-prediction">
+                <h2>✅ FINAL PREDICTION</h2>
+                <div class="prediction-box glow">
+                    {{ decision_tree_prediction }}
+                </div>
+            </div>
+
+            <div class="chart-section">
+                <h3>📊 Sentiment Distribution</h3>
+                <div class="chart-container">
+                    <img src="data:image/png;base64,{{ chart_img }}" alt="Sentiment Distribution">
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
